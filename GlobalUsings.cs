@@ -1,0 +1,24 @@
+﻿
+global using System.Collections.Generic;
+global using System.Data.SQLite;
+global using System.Data;
+global using System.Diagnostics;
+global using System.IO;
+global using System.Linq;
+global using System.Reflection;
+global using System.Text.RegularExpressions;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System;
+global using SunamoData.Data;
+global using SunamoExceptions.OnlyInSE;
+global using SunamoInterfaces.Interfaces;
+global using SunamoSqlite.Interfaces;
+global using SunamoSqlServer.MSSQL;
+global using SunamoArgs;
+global using SunamoEnums.Enums;
+global using SunamoShared.Helpers.Text;
+global using SunamoString;
+global using SunamoStringSplit;
+global using SunamoStringSubstring;
+global using SunamoValues;

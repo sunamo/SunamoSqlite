@@ -24,7 +24,7 @@ public class StoredProcedures : IStoredProcedures
             }
         }
         return new SQLiteCommand(f, DatabaseLayer.conn);
-        //return new SQLiteCommand(SH.Format2(f, p), DatabaseLayerSqlite.conn);
+        //return new SQLiteCommand(SHFormat.Format2(f, p), DatabaseLayerSqlite.conn);
     }
 
     public object VratHodnotuJednu(object b)

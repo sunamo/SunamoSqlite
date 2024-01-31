@@ -7,7 +7,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     public List<string> VratNazvySloupcuTabulky(string p)
     {
         List<string> vr = new List<string>();
-        SQLiteCommand comm = new SQLiteCommand(SH.Format2("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' AND type = 'table'", p), _conn);
+        SQLiteCommand comm = new SQLiteCommand(SHFormat.Format2("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' AND type = 'table'", p), _conn);
         SQLiteDataReader dr = comm.ExecuteReader(CommandBehavior.SingleRow);
         string sql = null;
         object o = dr.GetValue(0);
@@ -81,7 +81,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     public void InsertToTable(string tabulka, string nazvySloupcu, params object[] sloupce)
     {
         string hodnoty = StoredProceduresSqlite.ci.GetValues(sloupce);
-        SQLiteCommand comm = new SQLiteCommand(SH.Format2("INSERT INTO {0} {1} VALUES {2}", tabulka, nazvySloupcu, StoredProceduresSqlite.ci.GetValues(sloupce)), _conn);
+        SQLiteCommand comm = new SQLiteCommand(SHFormat.Format2("INSERT INTO {0} {1} VALUES {2}", tabulka, nazvySloupcu, StoredProceduresSqlite.ci.GetValues(sloupce)), _conn);
         comm.ExecuteNonQuery();
     }
 
@@ -115,7 +115,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     /// <param name="hodnota"></param>
     public List<int> GetValueColumnInt(string tabulka, string sloupecHledaní, string sloupecVeKteremHledat, object hodnota)
     {
-        string sql = SH.Format2("SELECT {0} FROM {1} WHERE {2} = {3}", sloupecHledaní, tabulka, sloupecVeKteremHledat, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(hodnota));
+        string sql = SHFormat.Format2("SELECT {0} FROM {1} WHERE {2} = {3}", sloupecHledaní, tabulka, sloupecVeKteremHledat, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(hodnota));
         //SQLiteCommand comm = new SQLiteCommand(sql, conn);
 
         return GetValuesAllRowsInt(sql);
@@ -158,7 +158,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     public List<object> GetValuesAllRows(string tabulka, string nazevSloupce, object hodnotaSloupce)
     {
         List<object> vr = new List<object>();
-        SQLiteCommand comm = new SQLiteCommand(SH.Format2("SELECT * FROM {0} WHERE {1} = {2}", tabulka, nazevSloupce, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(hodnotaSloupce)), _conn);
+        SQLiteCommand comm = new SQLiteCommand(SHFormat.Format2("SELECT * FROM {0} WHERE {1} = {2}", tabulka, nazevSloupce, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(hodnotaSloupce)), _conn);
 
 
         return vr;
@@ -177,7 +177,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     public List<string> VratVsechnyHodnotySloupce(string tabulka, string sloupec)
     {
         //DataTable dt = UlozeneProceduryI.ci.VratDataTable();
-        return GetValuesAllRowsString(SH.Format2("SELECT {0} FROM {1}", sloupec, tabulka));
+        return GetValuesAllRowsString(SHFormat.Format2("SELECT {0} FROM {1}", sloupec, tabulka));
     }
 
     /// <summary>
@@ -187,7 +187,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     /// <param name="aB"></param>
     public bool ExistsCombination(string p, params AB[] aB)
     {
-        string sql = SH.Format2("SELECT {0} FROM {1} {2}", aB[0].A, p, GeneratorSqLite.CombinedWhere(new ABC(aB)));
+        string sql = SHFormat.Format2("SELECT {0} FROM {1} {2}", aB[0].A, p, GeneratorSqLite.CombinedWhere(new ABC(aB)));
         DataTable dt = GetDataTable(sql);
         return dt.Rows.Count != 0;
     }
@@ -199,7 +199,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     /// <param name="id"></param>
     public string FindValueOfID(string tabulka, int id)
     {
-        //SQLiteCommand comm = new SQLiteCommand(SH.Format2("SELECT Nazev FROM {0} WHERE ID = {1}", tabulka, id));
+        //SQLiteCommand comm = new SQLiteCommand(SHFormat.Format2("SELECT Nazev FROM {0} WHERE ID = {1}", tabulka, id));
         return GetElementDataTable(GetDataTableSelective(tabulka, "ID", id), 0, 1);
     }
 
@@ -262,7 +262,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
     private int Update(string table, string sloupecID, int id, string sloupecKUpdate, double n)
     {
         //
-        string sql = SH.Format2("UPDATE {0} SET {1}={2} WHERE {3} = {4}", table, sloupecKUpdate, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(n), sloupecID, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(id));
+        string sql = SHFormat.Format2("UPDATE {0} SET {1}={2} WHERE {3} = {4}", table, sloupecKUpdate, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(n), sloupecID, StoredProceduresSqlite.ci.ReplaceValueOnlyOne(id));
         SQLiteCommand comm = new SQLiteCommand(sql, _conn);
         return comm.ExecuteNonQuery();
     }
@@ -277,7 +277,7 @@ public class StoredProceduresSqliteI : IStoredProceduresI
 
     public DataTable GetDataTable(string p, params string[] selectSloupce)
     {
-        return GetDataTable(SH.Format2("SELECT {0} FROM {1}", StoredProceduresSqlite.ci.GetColumnsWithoutBracets(selectSloupce.ToList()), p));
+        return GetDataTable(SHFormat.Format2("SELECT {0} FROM {1}", StoredProceduresSqlite.ci.GetColumnsWithoutBracets(selectSloupce.ToList()), p));
     }
 
     public int FindOutID(string tabulka, string nazevSloupce, object hodnotaSloupce)

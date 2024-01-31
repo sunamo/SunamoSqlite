@@ -1,23 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Version>24.1.10.1</Version>
+    <Version>24.1.24.1</Version>
     <Description>Working with SQLite</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SQLite" Version="3.13.0"></PackageReference>
-    <PackageReference Include="SunamoArgs" Version="24.1.11.1" />
-    <PackageReference Include="SunamoExceptions" Version="24.1.11.1" />
-    <PackageReference Include="SunamoInterfaces" Version="24.1.10.1" />
-    <PackageReference Include="SunamoShared" Version="24.1.12.1" />
-    <PackageReference Include="SunamoSqlServer" Version="24.1.10.1" />
-    <PackageReference Include="SunamoString" Version="24.1.10.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6"></PackageReference>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.118"></PackageReference>
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118"></PackageReference>
+    <PackageReference Include="SQLite" Version="3.13.0">
+    </PackageReference>
+    <PackageReference Include="SunamoInterfaces" Version="24.1.14.1" />
+    <PackageReference Include="SunamoSqlServer" Version="24.1.14.1" />
+    <PackageReference Include="SunamoStringFormat" Version="24.1.23.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118">
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>

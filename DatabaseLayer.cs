@@ -1,6 +1,3 @@
-using SunamoFileSystem;
-using SunamoThisApp;
-
 namespace SunamoSqlite;
 /// <summary>
 ///
@@ -90,7 +87,7 @@ public class DatabaseLayer
         StringBuilder sb = new StringBuilder();
         foreach (byte b in ba)
         {
-            sb.Append(SH.Format2(HexFormat, b));
+            sb.Append(SHFormat.Format2(HexFormat, b));
         }
         return "X'" + sb.ToString() + "'";
     }

@@ -92,7 +92,7 @@ public static class GeneratorSqLite
             {
                 sb.Append(" AND ");
             }
-            sb.Append(SH.Format2(" {0} = {1} ", var.A, StoredProceduresSqlite.ci.VratHodnotuJednu(var.B)));
+            sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, StoredProceduresSqlite.ci.VratHodnotuJednu(var.B)));
         }
         return sb.ToString();
     }

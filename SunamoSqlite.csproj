@@ -1,19 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Version>24.1.24.1</Version>
+    <Version>24.2.1.2</Version>
     <Description>Working with SQLite</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SQLite" Version="3.13.0">
     </PackageReference>
-    <PackageReference Include="SunamoInterfaces" Version="24.1.14.1" />
-    <PackageReference Include="SunamoSqlServer" Version="24.1.14.1" />
-    <PackageReference Include="SunamoStringFormat" Version="24.1.23.1" />
+    <PackageReference Include="SunamoData" Version="24.2.1.1" />
+    <PackageReference Include="SunamoInterfaces" Version="24.2.1.2" />
+    <PackageReference Include="SunamoTextBuilder" Version="24.2.1.2" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118">
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>

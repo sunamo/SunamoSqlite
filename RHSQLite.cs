@@ -1,4 +1,7 @@
+
 namespace SunamoSqlite;
+using SunamoSqlite._sunamo;
+
 public static class RHSQLite
 {
     public static string chyba = "";
@@ -11,7 +14,7 @@ public static class RHSQLite
         FieldInfo fi = t.GetField(nazev);
         // Zde musI být null
         string s = fi.GetValue(null).ToString();
-        bool vr = SH.IsNullOrWhiteSpace(s);
+        bool vr = string.IsNullOrWhiteSpace(s);
         if (vr)
         {
             chyba = "PolLOko" + " " + nazev + " " + "nem\u016F\u017Ee b\u00FDt pr\u00E1zdn\u00E1";
@@ -24,7 +27,7 @@ public static class RHSQLite
         Type t = o.GetType();
         FieldInfo fi = t.GetField(nazev);
         string s = fi.GetValue(o).ToString();
-        bool vr = SH.IsNullOrWhiteSpace(s);
+        bool vr = string.IsNullOrWhiteSpace(s);
         if (vr)
         {
             chybaInsertedRows = new InsertedRows("PolOZko" + " " + nazev + " " + "nem\u016FZe b\u00FDt prPzdn\u00E1" + ". ");
@@ -37,7 +40,7 @@ public static class RHSQLite
         Type t = o.GetType();
         FieldInfo fi = t.GetField(nazev);
         string s = fi.GetValue(o).ToString();
-        bool vr = SH.IsNullOrWhiteSpace(s);
+        bool vr = string.IsNullOrWhiteSpace(s);
         if (vr)
         {
             chybaChangedRows = new ChangedRows("Pol\u00A2Zko" + " " + nazev + " " + "nemUZe b\u00FDt pr\u00E1zdn\u00E1" + ". ");

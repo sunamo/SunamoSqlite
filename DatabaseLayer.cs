@@ -1,4 +1,7 @@
+
 namespace SunamoSqlite;
+using SunamoSqlite._sunamo;
+
 /// <summary>
 ///
 /// </summary>
@@ -34,7 +37,7 @@ public class DatabaseLayer
         catch (Exception ex)
         {
 
-            ThisApp.Error(Exceptions.TextOfExceptions(ex));
+            //ThisApp.Error(Exceptions.TextOfExceptions(ex));
         }
 
     }
@@ -87,7 +90,7 @@ public class DatabaseLayer
         StringBuilder sb = new StringBuilder();
         foreach (byte b in ba)
         {
-            sb.Append(SHFormat.Format2(HexFormat, b));
+            sb.Append(string.Format(HexFormat, b));
         }
         return "X'" + sb.ToString() + "'";
     }
@@ -116,7 +119,7 @@ public class DatabaseLayer
         }
         catch (Exception ex)
         {
-            ThrowEx.Custom("The provided string does not appear to be Hex encoded" + ":" + Environment.NewLine + hexEncoded + Environment.NewLine);
+            throw new Exception("The provided string does not appear to be Hex encoded" + ":" + Environment.NewLine + hexEncoded + Environment.NewLine);
             return null;
         }
     }
@@ -139,17 +142,17 @@ public class DatabaseLayer
 
     public static void LoadNewConnection()
     {
-        if (!FSSE.ExistsFile(dbFile))
+        if (!File.Exists(dbFile))
         {
             string nad = Path.GetDirectoryName(dbFile);
             FSSE.CreateFoldersPsysicallyUnlessThere(nad);
             Environment.CurrentDirectory = nad;
             string nazevSpustitelneExeDB = "sqlite3.exe";
-            string sDbExe = FS.Combine(nad, nazevSpustitelneExeDB);
-            if (!FSSE.ExistsFile(sDbExe))
+            string sDbExe = Path.Combine(nad, nazevSpustitelneExeDB);
+            if (!File.Exists(sDbExe))
             {
-                //File.Copy(FS.Combine(slozkaAktualniVerze, nazevSpustitelneExeDB),
-                FS.CopyTo(FS.Combine(s_applicationStartupPath, nazevSpustitelneExeDB), nad, FileMoveCollisionOption.Overwrite);
+                //File.Copy(Path.Combine(slozkaAktualniVerze, nazevSpustitelneExeDB),
+                FS.CopyTo(Path.Combine(s_applicationStartupPath, nazevSpustitelneExeDB), nad, FileMoveCollisionOption.Overwrite);
             }
 
             // TODO: S uvozovkami se to zadávat nedá, zjisti jak se zadává cesta k programu když jsou v ní uvozovky

@@ -1,4 +1,9 @@
+
+using SunamoTextBuilder;
+
 namespace SunamoSqlite;
+
+
 public static class GeneratorSqLite
 {
     private static Type type = typeof(GeneratorSqLite);
@@ -65,7 +70,7 @@ public static class GeneratorSqLite
         {
             if (var.referencesTable != null)
             {
-                ThrowEx.Custom("In SQLite must all columns reference the same table https://www.techonthenet.com/sqlite/foreign_keys/foreign_keys.php");
+                throw new Exception("In SQLite must all columns reference the same table https://www.techonthenet.com/sqlite/foreign_keys/foreign_keys.php");
 
                 //sb.AddItem("CONSTRAINT");
                 //sb.AddItem(("fk_" + var.Name + AllStrings.lowbar + inTable + AllStrings.lowbar + var.referencesTable + AllStrings.lowbar + var.referencesColumn));
@@ -92,7 +97,7 @@ public static class GeneratorSqLite
             {
                 sb.Append(" AND ");
             }
-            sb.Append(SHFormat.Format2(" {0} = {1} ", var.A, StoredProceduresSqlite.ci.VratHodnotuJednu(var.B)));
+            sb.Append(string.Format(" {0} = {1} ", var.A, StoredProceduresSqlite.ci.VratHodnotuJednu(var.B)));
         }
         return sb.ToString();
     }

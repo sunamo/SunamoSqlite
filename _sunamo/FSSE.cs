@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunamoSqlite._sunamo
+namespace SunamoSqlite._sunamo;
+
+internal class FSSE
 {
-    internal class FSSE
+    internal static void CreateFoldersPsysicallyUnlessThere(string nad)
     {
-        internal static void CreateFoldersPsysicallyUnlessThere(string nad)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

@@ -1,0 +1,16 @@
+global using SunamoEnums.Enums;
+global using System.Collections.Generic;
+global using System.Reflection;
+global using System;
+global using System.Linq;
+global using System.Text;
+global using SunamoExceptions;
+global using SunamoValues;
+global using System.IO;
+global using System.Diagnostics;
+global using SunamoData.Data;
+global using SunamoInterfaces.Interfaces;
+global using System.Data;
+global using SunamoArgs;
+global using System.Data.SQLite;
+global using SunamoSqlite.Interfaces;

@@ -1,0 +1,15 @@
+global using System.Collections;
+global using System.Data;
+global using System.Data.SQLite;
+global using System.Globalization;
+global using System.Text;
+global using SunamoSqlite._public.SunamoArgs;
+global using SunamoSqlite._public.SunamoData.Data;
+global using SunamoSqlite._public.SunamoInterfaces.Interfaces;
+global using SunamoSqlite._sunamo;
+global using SunamoSqlite._sunamo.SunamoCSharp;
+global using SunamoSqlite._sunamo.SunamoFileSystem.Enums;
+global using SunamoSqlite.Enums;
+global using SunamoSqlite.Interfaces;
+global using System.Diagnostics;
+global using System.Reflection;

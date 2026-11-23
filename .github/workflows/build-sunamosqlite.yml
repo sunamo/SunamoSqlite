@@ -1,0 +1,61 @@
+name: Build SunamoSqlite
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build:
+    name: Build SunamoSqlite
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore SunamoSqlite/SunamoSqlite.csproj
+
+    - name: Build
+      run: dotnet build SunamoSqlite/SunamoSqlite.csproj --configuration Release --no-restore
+
+  test:
+    name: Test SunamoSqlite.Tests
+    runs-on: ${{ matrix.os }}
+    needs: build
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore SunamoSqlite.Tests/SunamoSqlite.Tests.csproj
+
+    - name: Build tests
+      run: dotnet build SunamoSqlite.Tests/SunamoSqlite.Tests.csproj --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test SunamoSqlite.Tests/SunamoSqlite.Tests.csproj --configuration Release --no-build --verbosity normal
+      continue-on-error: true

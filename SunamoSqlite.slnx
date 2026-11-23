@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SunamoSqlite.Tests\SunamoSqlite.Tests.csproj" />
+  <Project Path="SunamoSqlite\SunamoSqlite.csproj" />
+</Solution>
